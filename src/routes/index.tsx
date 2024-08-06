@@ -16,7 +16,7 @@ export default component$(() => {
 
   return (
     <>
-      <h1>Version 1</h1>
+      <h1>Version 2</h1>
       <div>
         Can't wait to see what you build with qwik!
         <br />
