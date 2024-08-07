@@ -26,6 +26,9 @@ export const useAddUser = routeAction$(async (data, { fail }) => {
 });
 
 export const serverGreeter = server$(function ({ planet }: { planet: string }) {
+  if (!planet) {
+    throw new Error("Please provide a planet");
+  }
   const greeting = `Hello ${planet}`;
   return greeting;
 });
@@ -35,7 +38,7 @@ export default component$(() => {
 
   return (
     <>
-      <h1>Version 12</h1>
+      <h1>Version 13</h1>
       <div>
         Can't wait to see what you build with qwik!
         <br />
