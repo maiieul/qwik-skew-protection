@@ -49,8 +49,8 @@ export default component$(() => {
         <input name="lastName" />
         <button
           type="submit"
-          onClick$={() => {
-            const message = serverGreeter("world");
+          onClick$={async () => {
+            const message = await serverGreeter("world");
             alert(message);
           }}
         >
