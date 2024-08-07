@@ -5,10 +5,7 @@ export const useAddUser = routeAction$(async (data) => {
   // This will only run on the server when the user submits the form (or when the action is called programmatically)
 
   if (!data.fullName) {
-    return {
-      success: false,
-      // error: 'Please enter your full name',
-    };
+    throw new Error("Please enter your full name");
   }
 
   return {
@@ -24,7 +21,7 @@ export default component$(() => {
 
   return (
     <>
-      <h1>Version 7</h1>
+      <h1>Version 8</h1>
       <div>
         Can't wait to see what you build with qwik!
         <br />
