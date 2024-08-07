@@ -25,8 +25,8 @@ export const useAddUser = routeAction$(async (data, { fail }) => {
   };
 });
 
-export const serverGreeter = server$(function (name: string) {
-  const greeting = `Hello ${name}`;
+export const serverGreeter = server$(function ({ planet }: { planet: string }) {
+  const greeting = `Hello ${planet}`;
   return greeting;
 });
 
@@ -35,7 +35,7 @@ export default component$(() => {
 
   return (
     <>
-      <h1>Version 11</h1>
+      <h1>Version 12</h1>
       <div>
         Can't wait to see what you build with qwik!
         <br />
@@ -50,7 +50,7 @@ export default component$(() => {
         <button
           type="submit"
           onClick$={async () => {
-            const message = await serverGreeter("world");
+            const message = await serverGreeter({ planet: "world" });
             alert(message);
           }}
         >
