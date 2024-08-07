@@ -1,9 +1,12 @@
 import { component$ } from "@builder.io/qwik";
-import { Form, routeAction$, type DocumentHead } from "@builder.io/qwik-city";
+import {
+  Form,
+  routeAction$,
+  server$,
+  type DocumentHead,
+} from "@builder.io/qwik-city";
 
 export const useAddUser = routeAction$(async (data, { fail }) => {
-  // This will only run on the server when the user submits the form (or when the action is called programmatically)
-
   // if (!data.fullName) {
   //   throw new Error("Please enter your full name");
   // }
@@ -22,12 +25,17 @@ export const useAddUser = routeAction$(async (data, { fail }) => {
   };
 });
 
+export const serverGreeter = server$(function (name: string) {
+  const greeting = `Hello ${name}`;
+  return greeting;
+});
+
 export default component$(() => {
   const action = useAddUser();
 
   return (
     <>
-      <h1>Version 10</h1>
+      <h1>Version 11</h1>
       <div>
         Can't wait to see what you build with qwik!
         <br />
@@ -39,7 +47,15 @@ export default component$(() => {
         {/* <input name="fullName" /> */}
         <input name="firstName" />
         <input name="lastName" />
-        <button type="submit">Add user</button>
+        <button
+          type="submit"
+          onClick$={() => {
+            const message = serverGreeter("world");
+            alert(message);
+          }}
+        >
+          Add user
+        </button>
       </Form>
       {action.value?.success && (
         // When the action is done successfully, the `action.value` property will contain the return value of the action
