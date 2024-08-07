@@ -6,7 +6,7 @@ export const useAddUser = routeAction$(async (data) => {
 
   return {
     success: true,
-    name: data.firstName + " " + data.lastName,
+    fullName: data.fullName,
     // firstName: data.firstName,
     // lastName: data.lastName,
   };
@@ -17,7 +17,7 @@ export default component$(() => {
 
   return (
     <>
-      <h1>Version 5</h1>
+      <h1>Version 6</h1>
       <div>
         Can't wait to see what you build with qwik!
         <br />
@@ -26,13 +26,12 @@ export default component$(() => {
       <br />
 
       <Form action={action}>
-        <input name="firstName" />
-        <input name="lastName" />
+        <input name="fullName" />
         <button type="submit">Add user</button>
       </Form>
       {action.value?.success && (
         // When the action is done successfully, the `action.value` property will contain the return value of the action
-        <p>Hi {action.value.name}</p>
+        <p>Hi {action.value.fullName.toString()}</p>
       )}
     </>
   );
