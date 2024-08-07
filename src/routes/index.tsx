@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 import { Form, routeAction$, type DocumentHead } from "@builder.io/qwik-city";
 
-export const useAddUser = routeAction$(async (data) => {
+export const useAddUser = routeAction$(async (data, { fail }) => {
   // This will only run on the server when the user submits the form (or when the action is called programmatically)
 
   // if (!data.fullName) {
@@ -9,7 +9,9 @@ export const useAddUser = routeAction$(async (data) => {
   // }
 
   if (!data.firstName || !data.lastName) {
-    throw new Error("Please enter your first and last name");
+    return fail(500, {
+      message: "User could not be added",
+    });
   }
 
   return {
@@ -25,7 +27,7 @@ export default component$(() => {
 
   return (
     <>
-      <h1>Version 9</h1>
+      <h1>Version 10</h1>
       <div>
         Can't wait to see what you build with qwik!
         <br />
