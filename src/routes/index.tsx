@@ -4,6 +4,13 @@ import { Form, routeAction$, type DocumentHead } from "@builder.io/qwik-city";
 export const useAddUser = routeAction$(async (data) => {
   // This will only run on the server when the user submits the form (or when the action is called programmatically)
 
+  if (!data.fullName) {
+    return {
+      success: false,
+      // error: 'Please enter your full name',
+    };
+  }
+
   return {
     success: true,
     fullName: data.fullName,
@@ -31,7 +38,7 @@ export default component$(() => {
       </Form>
       {action.value?.success && (
         // When the action is done successfully, the `action.value` property will contain the return value of the action
-        <p>Hi {action.value.fullName.toString()}</p>
+        <p>Hi {action.value.fullName?.toString()}</p>
       )}
     </>
   );
