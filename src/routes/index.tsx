@@ -25,12 +25,15 @@ export const useAddUser = routeAction$(async (data, { fail }) => {
   };
 });
 
-export const serverGreeter = server$(function ({ planet }: { planet: string }) {
-  console.log("hi");
-  if (planet) {
-    throw new Error("Please provide a planet");
+export const serverGreeter = server$(function ({
+  greeter,
+}: {
+  greeter: string;
+}) {
+  if (!greeter) {
+    throw new Error("Please provide a greeter");
   }
-  const greeting = `Hello ${planet}`;
+  const greeting = `Hello ${greeter}`;
   return greeting;
 });
 
@@ -45,7 +48,7 @@ export default component$(() => {
 
   return (
     <>
-      <h1>Version 14</h1>
+      <h1>Version 15</h1>
       <div>
         Can't wait to see what you build with qwik!
         <br />
@@ -60,7 +63,7 @@ export default component$(() => {
         <button
           type="submit"
           onClick$={async () => {
-            const message = await serverGreeter({ planet: "world" });
+            const message = await serverGreeter({ greeter: "hi" });
             alert(message);
           }}
         >
@@ -68,7 +71,6 @@ export default component$(() => {
         </button>
       </Form>
       {action.value?.success && (
-        // When the action is done successfully, the `action.value` property will contain the return value of the action
         <>
           {/* <p>Hi {action.value.fullName.toString()}</p> */}
           <p>
