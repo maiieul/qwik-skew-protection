@@ -1,4 +1,4 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useVisibleTask$ } from "@builder.io/qwik";
 import {
   Form,
   routeAction$,
@@ -26,7 +26,8 @@ export const useAddUser = routeAction$(async (data, { fail }) => {
 });
 
 export const serverGreeter = server$(function ({ planet }: { planet: string }) {
-  if (!planet) {
+  console.log("hi");
+  if (planet) {
     throw new Error("Please provide a planet");
   }
   const greeting = `Hello ${planet}`;
@@ -36,9 +37,15 @@ export const serverGreeter = server$(function ({ planet }: { planet: string }) {
 export default component$(() => {
   const action = useAddUser();
 
+  useVisibleTask$(() => {
+    document.addEventListener("q:error", (event) => {
+      console.error(event);
+    });
+  });
+
   return (
     <>
-      <h1>Version 13</h1>
+      <h1>Version 14</h1>
       <div>
         Can't wait to see what you build with qwik!
         <br />
