@@ -25,15 +25,11 @@ export const useAddUser = routeAction$(async (data, { fail }) => {
   };
 });
 
-export const serverGreeter = server$(function ({
-  greeter,
-}: {
-  greeter: string;
-}) {
-  if (!greeter) {
-    throw new Error("Please provide a greeter");
+export const serverGreeter = server$(function ({ planet }: { planet: string }) {
+  if (!planet) {
+    throw new Error("Please provide a planet");
   }
-  const greeting = `Hello ${greeter}`;
+  const greeting = `Hello ${planet}`;
   return greeting;
 });
 
@@ -41,14 +37,14 @@ export default component$(() => {
   const action = useAddUser();
 
   useVisibleTask$(() => {
-    document.addEventListener("q:error", (event) => {
+    document.addEventListener("qerror", (event) => {
       console.error(event);
     });
   });
 
   return (
     <>
-      <h1>Version 15</h1>
+      <h1>Version 16</h1>
       <div>
         Can't wait to see what you build with qwik!
         <br />
@@ -63,7 +59,7 @@ export default component$(() => {
         <button
           type="submit"
           onClick$={async () => {
-            const message = await serverGreeter({ greeter: "hi" });
+            const message = await serverGreeter({ planet: "world" });
             alert(message);
           }}
         >
