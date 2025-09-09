@@ -50,7 +50,7 @@ export default component$(() => {
 
   return (
     <>
-      <h1>Version 27</h1>
+      <h1>Version 28</h1>
       <div>
         Can't wait to see what you build with qwik!
         <br />
