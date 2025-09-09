@@ -22,13 +22,9 @@ import { server$, type DocumentHead } from "@builder.io/qwik-city";
 //   };
 // });
 
-export const serverGreeter = server$(function ({
-  fullname,
-}: {
-  fullname: string;
-}) {
+export const serverGreeter = server$(({ fullname }: { fullname: string }) => {
   if (!fullname) {
-    throw new Error("Please provide a fullname");
+    return "Please provide a fullname";
   }
 
   const greeting = `Server says Hi ${fullname}`;
@@ -46,7 +42,7 @@ export default component$(() => {
 
   return (
     <>
-      <h1>Version 22</h1>
+      <h1>Version 23</h1>
       <div>
         Can't wait to see what you build with qwik!
         <br />
