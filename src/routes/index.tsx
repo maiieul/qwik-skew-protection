@@ -50,11 +50,7 @@ export default component$(() => {
 
   return (
     <>
-      <div>
-        Can't wait to see what you build with qwik!
-        <br />
-        Happy coding.
-      </div>
+      <div>Home page</div>
       <br />
 
       {/* <Form action={action}>

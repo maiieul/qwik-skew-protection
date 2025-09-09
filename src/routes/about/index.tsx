@@ -31,12 +31,12 @@ export const serverGreeter = server$(({ fullname }: { fullname: string }) => {
   return greeting;
 });
 
-export const aboutGreeter = $(({ fullname }: { fullname: string }) => {
-  if (!fullname) {
-    throw new Error("Please provide a fullname");
+export const aboutGreeter = $(({ name1 }: { name1: string }) => {
+  if (!name1) {
+    throw new Error("Please provide a name1");
   }
 
-  return `Client says Hi ${fullname}`;
+  return `Client says Hi ${name1}`;
 });
 
 export default component$(() => {
@@ -50,11 +50,7 @@ export default component$(() => {
 
   return (
     <>
-      <div>
-        Can't wait to see what you build with qwik!
-        <br />
-        Happy coding.
-      </div>
+      <div>About page</div>
       <br />
 
       {/* <Form action={action}>
@@ -68,16 +64,16 @@ export default component$(() => {
           alert(message);
         }}
       >
-        get server greeting
+        about get server greeting
       </button>
       <button
         type="submit"
         onClick$={async () => {
-          const message = await aboutGreeter({ fullname: "Maieul" });
+          const message = await aboutGreeter({ name1: "Maieul" });
           alert(message);
         }}
       >
-        get client greeting
+        about get client greeting
       </button>
       {/* </Form> */}
       {/* {action.value?.success && (
