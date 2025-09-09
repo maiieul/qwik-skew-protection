@@ -1,42 +1,38 @@
 import { component$, useVisibleTask$ } from "@builder.io/qwik";
-import {
-  Form,
-  routeAction$,
-  server$,
-  type DocumentHead,
-} from "@builder.io/qwik-city";
+import { server$, type DocumentHead } from "@builder.io/qwik-city";
 
-export const useAddUser = routeAction$(async (data, { fail }) => {
-  if (!data.fullName) {
-    return fail(500, {
-      message: "Please enter your full name",
-    });
+// export const useAddUser = routeAction$(async (data, { fail }) => {
+//   if (!data.fullName) {
+//     return fail(500, {
+//       message: "Please enter your full name",
+//     });
+//   }
+
+//   if (!data.firstName || !data.lastName) {
+//     return fail(500, {
+//       message: "User could not be added",
+//     });
+//   }
+
+//   return {
+//     success: true,
+//     fullName: data.fullName,
+//     firstName: data.firstName,
+//     lastName: data.lastName,
+//   };
+// });
+
+export const serverGreeter = server$(function ({ name }: { name: string }) {
+  if (!name) {
+    throw new Error("Please provide a name");
   }
 
-  if (!data.firstName || !data.lastName) {
-    return fail(500, {
-      message: "User could not be added",
-    });
-  }
-
-  return {
-    success: true,
-    fullName: data.fullName,
-    firstName: data.firstName,
-    lastName: data.lastName,
-  };
-});
-
-export const serverGreeter = server$(function ({ planet }: { planet: string }) {
-  if (!planet) {
-    throw new Error("Please provide a planet");
-  }
-  const greeting = `Hello ${planet}`;
+  const greeting = `Server says Hi ${name}`;
   return greeting;
 });
 
 export default component$(() => {
-  const action = useAddUser();
+  // const action = useAddUser();
 
   useVisibleTask$(() => {
     document.addEventListener("qerror", (event) => {
@@ -54,21 +50,21 @@ export default component$(() => {
       </div>
       <br />
 
-      <Form action={action}>
+      {/* <Form action={action}>
         <input name="fullName" />
         <input name="firstName" />
-        <input name="lastName" />
-        <button
-          type="submit"
-          onClick$={async () => {
-            const message = await serverGreeter({ planet: "world" });
-            alert(message);
-          }}
-        >
-          Add user
-        </button>
-      </Form>
-      {action.value?.success && (
+        <input name="lastName" /> */}
+      <button
+        type="submit"
+        onClick$={async () => {
+          const message = await serverGreeter({ name: "Maieul" });
+          alert(message);
+        }}
+      >
+        Add user
+      </button>
+      {/* </Form> */}
+      {/* {action.value?.success && (
         <>
           <p>Hi {action.value.fullName.toString()}</p>
           <p>
@@ -79,7 +75,7 @@ export default component$(() => {
           </p>
         </>
       )}
-      {action.value?.failed && <p>{action.value.message}</p>}
+      {action.value?.failed && <p>{action.value.message}</p>} */}
     </>
   );
 });
