@@ -1,5 +1,5 @@
 import { component$, Slot } from "@builder.io/qwik";
-import type { RequestHandler } from "@builder.io/qwik-city";
+import { Link, type RequestHandler } from "@builder.io/qwik-city";
 
 export const onGet: RequestHandler = async () => {
   // Control caching for this request for best performance and to reduce hosting costs:
@@ -14,5 +14,16 @@ export const onGet: RequestHandler = async () => {
 };
 
 export default component$(() => {
-  return <Slot />;
+  return (
+    <>
+      <h1>Version 29</h1>
+      <Link prefetch={false} href="/">
+        Home
+      </Link>
+      <Link prefetch={false} href="/about/">
+        About
+      </Link>
+      <Slot />
+    </>
+  );
 });
