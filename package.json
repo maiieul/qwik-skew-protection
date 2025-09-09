@@ -2,7 +2,7 @@
   "name": "my-qwik-empty-starter",
   "description": "Blank project with routing included",
   "engines": {
-    "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+    "node": "^20.3.0 || >=21.0.0"
   },
   "engines-annotation": "Mostly required by sharp which needs a Node-API v9 compatible runtime",
   "private": true,
@@ -28,19 +28,20 @@
     "qwik": "qwik"
   },
   "devDependencies": {
-    "@builder.io/qwik": "^1.7.3",
-    "@builder.io/qwik-city": "^1.7.3",
+    "@builder.io/qwik": "1.16.0",
+    "@builder.io/qwik-city": "1.16.0",
     "@types/eslint": "^8.56.10",
-    "@types/node": "^20.12.7",
+    "@types/node": "24.3.1",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
     "@typescript-eslint/parser": "^7.7.1",
     "eslint": "^8.57.0",
-    "eslint-plugin-qwik": "^1.7.3",
+    "eslint-plugin-qwik": "1.16.0",
     "prettier": "^3.2.5",
-    "typescript": "5.4.5",
+    "typescript": "5.9.2",
     "undici": "*",
     "vercel": "^29.1.1",
-    "vite": "^5.2.10",
-    "vite-tsconfig-paths": "^4.2.1"
-  }
+    "vite": "7.1.5",
+    "vite-tsconfig-paths": "5.1.4"
+  },
+  "packageManager": "pnpm@10.15.0+sha512.486ebc259d3e999a4e8691ce03b5cac4a71cbeca39372a9b762cb500cfdf0873e2cb16abe3d951b1ee2cf012503f027b98b6584e4df22524e0c7450d9ec7aa7b"
 }

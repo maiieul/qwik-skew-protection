@@ -7,9 +7,9 @@ import {
 } from "@builder.io/qwik-city";
 
 export const useAddUser = routeAction$(async (data, { fail }) => {
-  // if (!data.fullName) {
-  //   throw new Error("Please enter your full name");
-  // }
+  if (!data.fullName) {
+    throw new Error("Please enter your full name");
+  }
 
   if (!data.firstName || !data.lastName) {
     return fail(500, {
@@ -19,7 +19,7 @@ export const useAddUser = routeAction$(async (data, { fail }) => {
 
   return {
     success: true,
-    // fullName: data.fullName,
+    fullName: data.fullName,
     firstName: data.firstName,
     lastName: data.lastName,
   };
@@ -53,7 +53,7 @@ export default component$(() => {
       <br />
 
       <Form action={action}>
-        {/* <input name="fullName" /> */}
+        <input name="fullName" />
         <input name="firstName" />
         <input name="lastName" />
         <button
@@ -68,7 +68,7 @@ export default component$(() => {
       </Form>
       {action.value?.success && (
         <>
-          {/* <p>Hi {action.value.fullName.toString()}</p> */}
+          <p>Hi {action.value.fullName.toString()}</p>
           <p>
             Hi{" "}
             {action.value.firstName.toString() +
