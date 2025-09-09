@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/build/(.*).json",
+      "source": "/assets/(.*).json",
       "headers": [
         {
           "key": "Cache-Control",
