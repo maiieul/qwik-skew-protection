@@ -31,12 +31,12 @@ export const serverGreeter = server$(({ fullname }: { fullname: string }) => {
   return greeting;
 });
 
-export const aboutGreeter = $(({ name1 }: { name1: string }) => {
-  if (!name1) {
-    throw new Error("Please provide a name1");
+export const aboutGreeter = $(({ name2 }: { name2: string }) => {
+  if (!name2) {
+    throw new Error("Please provide a name2");
   }
 
-  return `Client says Hi ${name1}`;
+  return `Client says Hi ${name2}`;
 });
 
 export default component$(() => {
@@ -69,7 +69,7 @@ export default component$(() => {
       <button
         type="submit"
         onClick$={async () => {
-          const message = await aboutGreeter({ name1: "Maieul" });
+          const message = await aboutGreeter({ name2: "Maieul" });
           alert(message);
         }}
       >

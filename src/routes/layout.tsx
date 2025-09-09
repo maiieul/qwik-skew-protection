@@ -16,7 +16,7 @@ export const onGet: RequestHandler = async () => {
 export default component$(() => {
   return (
     <>
-      <h1>Version 31</h1>
+      <h1>Version 32</h1>
       <Link prefetch={false} href="/">
         Home
       </Link>
