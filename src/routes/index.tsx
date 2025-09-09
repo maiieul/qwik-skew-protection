@@ -22,12 +22,16 @@ import { server$, type DocumentHead } from "@builder.io/qwik-city";
 //   };
 // });
 
-export const serverGreeter = server$(function ({ name }: { name: string }) {
-  if (!name) {
-    throw new Error("Please provide a name");
+export const serverGreeter = server$(function ({
+  fullname,
+}: {
+  fullname: string;
+}) {
+  if (!fullname) {
+    throw new Error("Please provide a fullname");
   }
 
-  const greeting = `Server says Hi ${name}`;
+  const greeting = `Server says Hi ${fullname}`;
   return greeting;
 });
 
@@ -42,7 +46,7 @@ export default component$(() => {
 
   return (
     <>
-      <h1>Version 21</h1>
+      <h1>Version 22</h1>
       <div>
         Can't wait to see what you build with qwik!
         <br />
@@ -57,7 +61,7 @@ export default component$(() => {
       <button
         type="submit"
         onClick$={async () => {
-          const message = await serverGreeter({ name: "Maieul" });
+          const message = await serverGreeter({ fullname: "Maieul" });
           alert(message);
         }}
       >
