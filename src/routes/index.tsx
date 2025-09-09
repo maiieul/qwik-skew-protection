@@ -1,4 +1,4 @@
-import { component$, useVisibleTask$ } from "@builder.io/qwik";
+import { $, component$, useVisibleTask$ } from "@builder.io/qwik";
 import { server$, type DocumentHead } from "@builder.io/qwik-city";
 
 // export const useAddUser = routeAction$(async (data, { fail }) => {
@@ -31,6 +31,14 @@ export const serverGreeter = server$(({ fullname }: { fullname: string }) => {
   return greeting;
 });
 
+export const greeter = $(({ fullname }: { fullname: string }) => {
+  if (!fullname) {
+    throw new Error("Please provide a fullname");
+  }
+
+  return `Client says Hi ${fullname}`;
+});
+
 export default component$(() => {
   // const action = useAddUser();
 
@@ -42,7 +50,7 @@ export default component$(() => {
 
   return (
     <>
-      <h1>Version 24</h1>
+      <h1>Version 25</h1>
       <div>
         Can't wait to see what you build with qwik!
         <br />
@@ -61,7 +69,16 @@ export default component$(() => {
           alert(message);
         }}
       >
-        Add user
+        get server greeting
+      </button>
+      <button
+        type="submit"
+        onClick$={async () => {
+          const message = await greeter({ fullname: "Maieul" });
+          alert(message);
+        }}
+      >
+        get client greeting
       </button>
       {/* </Form> */}
       {/* {action.value?.success && (
